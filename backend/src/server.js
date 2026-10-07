@@ -52,7 +52,7 @@ app.use((req, res) => {
 app.listen(PORT, () => {
   console.log(`RosterView API running on port ${PORT}`);
   console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`Database: ${process.env.DB_NAME || 'rosterview_dev'}`);
+  console.log(`Database: ${pool.label}`);
 });
 
 module.exports = app;

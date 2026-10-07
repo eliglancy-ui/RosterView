@@ -20,6 +20,14 @@ class Class {
     return result.rows;
   }
 
+  // Get every class (admin view)
+  static async getAll() {
+    const result = await pool.query(
+      'SELECT id, name, grade_level, period, school_year, description FROM classes ORDER BY period'
+    );
+    return result.rows;
+  }
+
   // Create a new class
   static async create(teacherId, name, gradeLavel, period, schoolYear, description = '') {
     const result = await pool.query(

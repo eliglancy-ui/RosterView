@@ -6,10 +6,16 @@ const { verifyToken, requireTeacherOrAdmin } = require('../middleware/auth');
 
 const router = express.Router();
 
-// Get all classes for current teacher
-router.get('/', verifyToken, requireTeacherOrAdmin, async (req, res) => {
+// Get classes for the current user: admins see every class, teachers their own,
+// other roles (parents) none yet
+router.get('/', verifyToken, async (req, res) => {
   try {
-    const classes = await Class.getByTeacher(req.user.id);
+    let classes = [];
+    if (req.user.role === 'admin') {
+      classes = await Class.getAll();
+    } else if (req.user.role === 'teacher') {
+      classes = await Class.getByTeacher(req.user.id);
+    }
 
     // Add stats for each class
     const classesWithStats = await Promise.all(
