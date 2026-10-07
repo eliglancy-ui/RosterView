@@ -4,10 +4,10 @@
 -- Insert test teachers
 INSERT INTO teachers (email, password_hash, first_name, last_name, role, school_id)
 VALUES
-  ('teacher1@wcpss.edu', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/TVG2', 'Sarah', 'Johnson', 'teacher', 'SCH001'),
-  ('teacher2@wcpss.edu', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/TVG2', 'James', 'Smith', 'teacher', 'SCH001'),
-  ('admin@wcpss.edu', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/TVG2', 'Admin', 'User', 'admin', 'SCH001'),
-  ('parent@example.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/TVG2', 'Parent', 'User', 'parent', 'SCH001')
+  ('teacher1@wcpss.edu', '$2a$10$ZHO8hFSeVCvTF9F6KNB50OiZWdXr1JlRKzmAhlKKxU9BVL8IxkEOm', 'Sarah', 'Johnson', 'teacher', 'SCH001'),
+  ('teacher2@wcpss.edu', '$2a$10$ZHO8hFSeVCvTF9F6KNB50OiZWdXr1JlRKzmAhlKKxU9BVL8IxkEOm', 'James', 'Smith', 'teacher', 'SCH001'),
+  ('admin@wcpss.edu', '$2a$10$ZHO8hFSeVCvTF9F6KNB50OiZWdXr1JlRKzmAhlKKxU9BVL8IxkEOm', 'Admin', 'User', 'admin', 'SCH001'),
+  ('parent@example.com', '$2a$10$ZHO8hFSeVCvTF9F6KNB50OiZWdXr1JlRKzmAhlKKxU9BVL8IxkEOm', 'Parent', 'User', 'parent', 'SCH001')
 ON CONFLICT (email) DO NOTHING;
 
 -- Insert test students

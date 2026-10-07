@@ -41,7 +41,7 @@ function DashboardPage() {
       <p style={{ color: '#7f8c8d', marginBottom: '2rem' }}>
         {user?.role === 'teacher' && "Here are your classes. Click on any class to view and manage student status."}
         {user?.role === 'admin' && "Admin view: Monitoring all classes across the school."}
-        {user?.role === 'parent' && "Parent view: Tracking your student's classes."}
+        {user?.role === 'parent' && "Parent view: linking parents to their students is coming soon."}
       </p>
 
       {error && <div className="error">{error}</div>}

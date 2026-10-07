@@ -48,23 +48,22 @@ rosterview/
 - **Backend**: Node.js, Express.js, PostgreSQL
 - **Frontend**: React 18, React Router, Axios
 - **Authentication**: JWT (JSON Web Tokens)
-- **Database**: PostgreSQL with connection pooling
+- **Database**: PostgreSQL SQL; built-in PGlite for development, any PostgreSQL server via `DATABASE_URL`
 - **Styling**: CSS3 with custom design system
 
 ## Quick Start
 
 ### Prerequisites
 
-- Node.js 16+ and npm
-- PostgreSQL 12+ (or Docker)
-- Git
+- Node.js 18+ and npm
+- That's it. No database to install: RosterView uses a built-in database (PGlite) that starts with the app and loads the sample data automatically.
 
 ### Installation
 
-1. **Clone the repository**
+1. **Get the code** (or open the repo in GitHub Codespaces)
    ```bash
-   git clone https://github.com/eliglancy/rosterview.git
-   cd rosterview
+   git clone https://github.com/eliglancy-ui/RosterView.git
+   cd RosterView
    ```
 
 2. **Install dependencies**
@@ -72,61 +71,22 @@ rosterview/
    npm install
    ```
 
-3. **Set up PostgreSQL database**
-   
-   Option A: Using PostgreSQL locally
-   ```bash
-   # Create database
-   createdb rosterview_dev
-   
-   # Run schema
-   psql rosterview_dev < backend/src/db/schema.sql
-   
-   # Load seed data
-   psql rosterview_dev < backend/src/db/seed.sql
-   ```
-
-   Option B: Using Docker
-   ```bash
-   docker run --name rosterview-postgres \
-     -e POSTGRES_PASSWORD=postgres \
-     -e POSTGRES_DB=rosterview_dev \
-     -p 5432:5432 \
-     -d postgres:15
-   
-   # Then run the SQL files
-   docker exec -i rosterview-postgres psql -U postgres -d rosterview_dev < backend/src/db/schema.sql
-   docker exec -i rosterview-postgres psql -U postgres -d rosterview_dev < backend/src/db/seed.sql
-   ```
-
-4. **Configure environment**
-   
-   Backend (backend/.env):
-   ```
-   DB_HOST=localhost
-   DB_PORT=5432
-   DB_NAME=rosterview_dev
-   DB_USER=postgres
-   DB_PASSWORD=postgres
-   PORT=5000
-   NODE_ENV=development
-   JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
-   API_BASE_URL=http://localhost:5000
-   FRONTEND_URL=http://localhost:3000
-   ```
-
-   Frontend (frontend/.env):
-   ```
-   REACT_APP_API_BASE_URL=http://localhost:5000
-   REACT_APP_API_TIMEOUT=10000
-   ```
-
-5. **Start the application**
+3. **Start the application**
    ```bash
    npm run dev
    ```
 
-   This will start both backend (port 5000) and frontend (port 3000) in development mode.
+   This starts the backend (port 5000) and the website (port 3000). Open port 3000 and sign in with a demo account below.
+
+   The sample data resets each time you start the app, so status changes you make are not kept between runs.
+
+### Using a real PostgreSQL database (optional)
+
+Create `backend/.env` with a `DATABASE_URL` and the app will use that server instead of the built-in one:
+```
+DATABASE_URL=postgres://postgres:postgres@localhost:5432/rosterview_dev
+```
+Then load `backend/src/db/schema.sql` and `backend/src/db/seed.sql` into it once with `psql`.
 
 ### Running Separately
 
